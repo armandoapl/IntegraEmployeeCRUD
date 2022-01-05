@@ -1,0 +1,71 @@
+﻿@using prueba_integra.ViewModel
+@model Employee
+
+<form method="post" enctype="multipart/form-data">
+    <div class="border p-3 mt-4"> 
+        @*<div class="row pb-2">
+            <h4 class="text-info">Editar datos del Empleado @Model.Employee.Name: </h4> 
+            <div>
+                <strong class="text-info">(id: @Model.Employee.Id)</strong>
+            </div>
+            <hr />
+        </div>*@
+
+        <div class=row>
+            <div class="col-6 mb-3">
+                <label asp-for="Name">Nombre</label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="Lastname">Apellido</label>
+                <input asp-for="Lastname" class="form-control"/>
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class=row>
+            <div class="col-6 mb-3">
+                <label asp-for="PhoneNumber">Numero de Telefono</label>
+                <input asp-for="PhoneNumber" asp-format="{0:(###) ###-####}" class="form-control"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="Mail">Correo Electronico</label>
+                <input asp-for="Mail" class="form-control"/>
+                <span asp-validation-for="Mail" class="text-danger"></span>
+
+            </div>
+        </div>
+
+        <div class=row>
+            <div class="col-6 mb-3">
+@*                <label>Foto catual @Model.Employee.PhotoFileName</label>
+*@                <input asp-for="PhotoIformFile" class="form-control"/>
+
+                <span asp-validation-for="PhotoIformFile"  class="text-danger" ></span>
+
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="ContractDate">Fecha de contratacion @Model.ContractDate</label>
+                <input asp-for="@Model.ContractDate" value="@Model.ContractDate" asp-format="{0:MM/dd/yyyy}" class="form-control"/>
+                <span asp-validation-for="ContractDate" class="text-danger"></span>
+
+            </div>
+        </div>
+            
+        <button
+            type="submit"
+            class="btn btn-outline-success"
+            style="width: 150px;"
+        >
+            <i class="bi bi-pen-fill"></i> Editar
+        </button>
+
+        <a asp-controller="Employee" asp-action="List">
+            <i class="bi bi-arrow-return-left text-info"></i>
+            <span class="text-info"> Volver a lista</span>
+        </a>
+    </div>
+
+</form>

@@ -1,0 +1,66 @@
+﻿@model Employee
+
+<form method="post" enctype="multipart/form-data">
+    <div class="border p-3 mt-4"> 
+        <div class="row pb-2">
+            <h4 class="text-info ">Datos del Empleado: </h4> 
+            <hr />
+        </div>
+
+        <div class=row>
+            <div class="col-6 mb-3">
+                <label asp-for="Name">Nombre</label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="Lastname">Apellido</label>
+                <input asp-for="Lastname" class="form-control"/>
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class=row>
+            <div class="col-6 mb-3">
+                <label asp-for="PhoneNumber">Numero de Telefono</label>
+                <input asp-for="PhoneNumber" asp-format="{0:(###) ###-####}" class="form-control"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="Mail">Correo Electronico</label>
+                <input asp-for="Mail" class="form-control"/>
+                <span asp-validation-for="Mail" class="text-danger"></span>
+
+            </div>
+        </div>
+
+        <div class=row>
+            <div class="col-6 mb-3">
+                <label asp-for="PhotoIformFile"> Foto </label>
+                <input asp-for="PhotoIformFile" class="form-control"/>
+                <span asp-validation-for="PhotoIformFile" class="text-danger"></span>
+
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="ContractDate">Fecha de contratacion</label>
+                <input asp-for="ContractDate" asp-format="{0:MM/dd/yyyy}" class="form-control"/>
+                <span asp-validation-for="ContractDate" class="text-danger"></span>
+
+            </div>
+        </div>
+            
+        <button
+            type="submit"
+            class="btn bnt-outline-success"
+            style="width: 150px;"
+        >
+            <i class="bi bi-person-lines-fill"></i> Crear
+        </button>
+
+        <a asp-controller="Employee" asp-action="List">
+            <i class="bi bi-arrow-return-left text-info"></i>
+            <span class="text-info"> Volver a lista</span>
+        </a>
+    </div>
+
+</form>

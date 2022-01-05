@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "List";
+}
+
+<partial name="_notification" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h3 class="text-info align-top">Lista de Empleados</h3>
+        </div>
+        <div class="col-6 text-end">
+            <a 
+                asp-controller="Employee" 
+                asp-action="Create"
+                class=" btn btn-outline-info"
+                style="vertical-align: middle;"
+            >
+                Registrar Empleado
+                <i class="bi bi-person-plus-fill"></i>
+            </a>
+        </div>
+    </div>
+    <hr />
+    <br />
+
+    <div class="col-4 p-0 justify-content-end">
+        <form asp-controller="Employee" asp-action="List"> 
+            <input class="form-control mb-1" type="text" name="searchText" placeholder="buscar por nombre"/>
+            <button
+                    type="submit"
+                    class="btn btn-outline-info"
+                    style="width: 150px;"
+                    >
+               <i class="bi bi-search"></i>Buscar
+            </button>
+        </form>
+    </div>
+    <br />  
+
+    <table class="table table-bordered table-stripe" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+
+                <th>
+                    Nombre
+                </th>
+
+                <th>
+                    Foto
+                </th>
+
+                <th>
+                    Apellido
+                </th>
+
+                <th>
+                    Numero de Telefono
+                </th>
+
+                <th>
+                    Correo
+                </th>
+
+                <th>
+                    Fecha de Contratacion
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var employee in Model)
+            {
+                <tr>
+                    <th class="align-middle text-center">
+                        
+                        @employee.Id
+                    </th>
+
+                    <th class="align-middle text-center">
+                            @employee.Name
+                    </th>
+
+                    <th>
+                        <img 
+                        src="@(employee.PhotoFileName== null ? "/Photos/default.jpg" : "/Photos/" + @employee.PhotoFileName)" class="rounded mx-auto d-block" width="70" height="70" 
+                        />
+                   </th>
+
+                    <th class="align-middle text-center">
+                        @employee.Lastname
+                    </th>
+
+                    <th class="align-middle text-center">
+                        @employee.PhoneNumber
+                    </th>
+
+                    <th class="align-middle text-center">
+                        @employee.Mail
+                    </th>
+
+                    <th class="align-middle text-center">
+                        @employee.ContractDate.ToString("MM-dd-yyyy")
+                    </th>
+
+                    <th class="d-flex flex-column">
+
+                        <div class="d-flex flex-column">
+                            <div class="btn-group">
+                            
+                                <a 
+                                    asp-controller="Employee" 
+                                    asp-action="Edit" 
+                                    asp-route-id="@employee.Id"
+                                    class="btn btn-outline-info"
+                                >
+                                    <i class="bi bi-pen">Editar</i>
+                                </a>
+
+
+
+                            </div>
+
+                            <div class="btn-group">
+                            
+                                <a 
+                                    asp-controller="Employee" 
+                                    asp-action="CreateDocument" 
+                                    asp-route-employeeName="@employee.Name"
+                                    asp-route-employeeLastname="@employee.Lastname"
+                                    asp-route-phoneNumber="@employee.PhoneNumber"
+                                    asp-route-mail="@employee.Mail"
+                                    asp-route-contractDate="@employee.ContractDate.ToString()"
+                                    class="btn btn-outline-info"
+                                >
+                                    <i class="bi bi-pen">Ficha PDF</i>
+                                </a>
+                            </div>
+
+
+                            <div class="btn-group">
+                                <a 
+                                    asp-controller="Employee" 
+                                    asp-action="Delete" 
+                                    asp-route-id="@employee.Id"
+                                    class="btn btn-outline-danger"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            
+                            </div>
+
+                        </div>
+                        
+
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
